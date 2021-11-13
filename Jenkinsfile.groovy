@@ -40,7 +40,8 @@ node {
 
         stage('DeployToDev') {
             withKubeConfig([credentialsId: 'kube_1']) {
-                sh "kubectl apply -k k8s"
+                sh "kubectl apply -f k8s/deployment.yaml"
+                sh "kubectl apply -f k8s/svc.yaml"
             }
         }
 

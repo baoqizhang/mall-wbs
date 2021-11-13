@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: {{service}}
+  namespace: {{namespace}}
+spec:
+  selector:
+    matchLabels:
+      app: {{service}}
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: {{service}}
+    spec:
+      containers:
+        - name: {{service}}
+          image: {{IMAGE_URL}}:{{IMAGE_TAG}} # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster
+      imagePullSecrets:
+        - name: regcred

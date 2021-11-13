@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{service}}-service
+  namespace: {{namespace}}
+spec:
+  selector:
+    app: {{service}}
+  ports:
+    - protocol: TCP
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+      nodePort: 30036
+  type: NodePort # type of the service. NodePort indicates that our service will be external.

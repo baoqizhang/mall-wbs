@@ -17,8 +17,7 @@ node {
 
     stage('Build') {
         echo "3.Build Docker Image Stage"
-        def jarName = sh(script: 'find build/libs -type f -name "*.jar"', returnStdout: true).trim()
-        sh "docker build --build-arg jarName=${jarName} -t ${registry_url}/${registry_ns}:${build_tag} ."
+        sh "docker build -t ${registry_url}/${registry_ns}:${build_tag} ."
     }
 
     stage('Push') {

@@ -35,12 +35,13 @@ node {
 
     stage('Deploy') {
         echo "5. Deploy Stage"
-        sh "sed -i 's#{{service}}#${project_name}#g;s#{{namespace}}#${project_name}#g;s#{{IMAGE_URL}}#${registry_url}/${registry_ns}#g;s#{{IMAGE_TAG}}#${build_tag}#g' ./k8s/deployment.yaml"
-        sh "sed -i 's#{{service}}#${project_name}#g;s#{{namespace}}#${project_name}#g' ./k8s/svc.yaml"
+        sh "sed -i 's#{{service}}#${project_name}#g;s#{{namespace}}#${project_name}#g;s#{{IMAGE_URL}}#${registry_url}/${registry_ns}#g;s#{{IMAGE_TAG}}#${build_tag}#g' k8s/deployment.yaml"
+        sh "sed -i 's#{{service}}#${project_name}#g;s#{{namespace}}#${project_name}#g' k8s/svc.yaml"
 
         stage('DeployToDev') {
             withKubeConfig([credentialsId: 'kube_1']) {
-                sh "kubectl apply -f k8s/ ."
+                sh "kubectl apply -f k8s/deployment.yaml ."
+                sh "kubectl apply -f k8s/svc.yaml ."
             }
         }
 

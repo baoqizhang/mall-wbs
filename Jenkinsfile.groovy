@@ -17,7 +17,8 @@ node {
 
     stage('Build') {
         echo "3.Build Docker Image Stage"
-        sh "docker build -t ${registry_url}/${registry_ns}:${build_tag} ."
+        def jarName = sh(script: 'find build/libs -type f -name "*.jar"', returnStdout: true).trim()
+        sh "docker build --build-arg jarName='${jarName}' -t ${registry_url}/${registry_ns}:${build_tag} ."
     }
 
     stage('Push') {
@@ -40,7 +41,7 @@ node {
 
         stage('DeployToDev') {
             withKubeConfig([credentialsId: 'kube_1']) {
-                sh "kubectl apply -f ./k8s ."
+                sh "kubectl apply -f k8s/ ."
             }
         }
 

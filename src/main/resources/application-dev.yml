@@ -1,7 +1,7 @@
 spring:
    datasource:
-      url: jdbc:mysql://localhost:3306/mall-wbs?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
-      username: root
+      url: jdbc:mysql://47.100.197.51:13306/mall-wbs?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+      username: baorui
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:

@@ -8,6 +8,9 @@ group = 'com.thoughtworks'
 version = '1.0.0'
 sourceCompatibility = '11'
 
+apply from: "${rootDir}/gradle/jacoco.gradle"
+apply from: "${rootDir}/gradle/checkstyle.gradle"
+
 configurations {
    compileOnly {
       extendsFrom annotationProcessor

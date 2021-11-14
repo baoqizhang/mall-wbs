@@ -1,0 +1,65 @@
+apply plugin: 'jacoco'
+
+def generalExcludes = [
+  '**/com/thoughtworks/mall/**Application'
+]
+
+def coverageExcludes = [
+  '**/com/thoughtworks/mall/infrastructure/**',
+  '**/com/thoughtworks/mall/**/constants/**',
+  '**/com/thoughtworks/mall/**/entity/**',
+  '**/com/thoughtworks/mall/**/response/**',
+  '**/com/thoughtworks/mall/**/request/**',
+  '**/com/thoughtworks/mall/**/exception/**',
+  '**/com/thoughtworks/mall/**/dto/**',
+  '**/com/thoughtworks/mall/**/utils/**',
+  '**/resources/**'
+]
+
+def debtExcludes = [
+  '**/resources/**'
+]
+
+test {
+  finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+  reports {
+    xml.required = false
+    html.required = true
+  }
+  afterEvaluate {
+    classDirectories.from = files(classDirectories.files.collect {
+      fileTree(dir: it, exclude: generalExcludes + coverageExcludes + debtExcludes)
+    })
+  }
+}
+
+jacocoTestCoverageVerification {
+  afterEvaluate {
+    classDirectories.from = files(classDirectories.files.collect {
+      fileTree(dir: it, exclude: generalExcludes + coverageExcludes + debtExcludes)
+    })
+  }
+
+  violationRules {
+    failOnViolation = true
+    rule {
+      limit {
+        counter = "LINE"
+        value = 'COVEREDRATIO'
+        minimum = 0.5
+      }
+      limit {
+        counter = "BRANCH"
+        value = 'COVEREDRATIO'
+        minimum = 0.3
+      }
+    }
+  }
+}
+
+check {
+  dependsOn(jacocoTestReport, jacocoTestCoverageVerification)
+}

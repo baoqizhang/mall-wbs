@@ -8,6 +8,10 @@ public class GenericBizException extends BizException {
         super(message);
     }
 
+    public GenericBizException(Throwable throwable) {
+        super(throwable);
+    }
+
     public GenericBizException(HttpStatus status, String message) {
         super(status, message);
     }

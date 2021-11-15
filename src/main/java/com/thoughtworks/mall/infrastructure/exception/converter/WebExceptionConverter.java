@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface WebExceptionConverter {
 
-    boolean supports(Class<?> throwableType);
+   boolean supports(Class<?> throwableType);
 
-    ResponseEntity<Map<String, Object>> convert(Throwable throwable, HttpServletRequest request);
+   ResponseEntity<Map<String, Object>> convert(Throwable throwable, HttpServletRequest request);
 }

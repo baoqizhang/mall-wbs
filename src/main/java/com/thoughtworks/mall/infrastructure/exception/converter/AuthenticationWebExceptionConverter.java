@@ -21,44 +21,44 @@ import java.util.Optional;
 @Order(Ordered.HIGHEST_PRECEDENCE + 400)
 public class AuthenticationWebExceptionConverter extends AbstractExceptionConverter<AuthenticationException> {
 
-    @Override
-    public boolean supports(Class<?> throwableType) {
-        return AuthenticationException.class.isAssignableFrom(throwableType);
-    }
+   @Override
+   public boolean supports(Class<?> throwableType) {
+      return AuthenticationException.class.isAssignableFrom(throwableType);
+   }
 
-    @Override
-    protected String getCode(AuthenticationException exception, MergedAnnotation<ResponseStatus> metadata) {
-        var origin = getOriginThrowable(exception);
-        if (origin instanceof BizException) {
-            return ((BizException) origin).getHttpStatus().name();
-        }
-        return super.getCode(exception, metadata);
-    }
+   @Override
+   protected String getCode(AuthenticationException exception, MergedAnnotation<ResponseStatus> metadata) {
+      var origin = getOriginThrowable(exception);
+      if (origin instanceof BizException) {
+         return ((BizException) origin).getHttpStatus().name();
+      }
+      return super.getCode(exception, metadata);
+   }
 
-    @Override
-    protected HttpStatus getHttpStatus(AuthenticationException exception, MergedAnnotation<ResponseStatus> metadata) {
-        var origin = getOriginThrowable(exception);
-        if (origin instanceof BizException) {
-            return ((BizException) origin).getHttpStatus();
-        }
+   @Override
+   protected HttpStatus getHttpStatus(AuthenticationException exception, MergedAnnotation<ResponseStatus> metadata) {
+      var origin = getOriginThrowable(exception);
+      if (origin instanceof BizException) {
+         return ((BizException) origin).getHttpStatus();
+      }
 
-        if ((origin instanceof BadCredentialsException)) {
-            return HttpStatus.BAD_REQUEST;
-        }
+      if ((origin instanceof BadCredentialsException)) {
+         return HttpStatus.BAD_REQUEST;
+      }
 
-        if (origin instanceof HttpRequestMethodNotSupportedException) {
-            return HttpStatus.METHOD_NOT_ALLOWED;
-        }
+      if (origin instanceof HttpRequestMethodNotSupportedException) {
+         return HttpStatus.METHOD_NOT_ALLOWED;
+      }
 
-        if (origin instanceof HttpMediaTypeNotSupportedException) {
-            return HttpStatus.UNSUPPORTED_MEDIA_TYPE;
-        }
+      if (origin instanceof HttpMediaTypeNotSupportedException) {
+         return HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+      }
 
-        return metadata.getValue("code", HttpStatus.class).orElse(HttpStatus.UNAUTHORIZED);
-    }
+      return metadata.getValue("code", HttpStatus.class).orElse(HttpStatus.UNAUTHORIZED);
+   }
 
-    private Throwable getOriginThrowable(Throwable throwable) {
-        return Optional.ofNullable(NestedExceptionUtils.getRootCause(throwable))
-                .orElse(throwable);
-    }
+   private Throwable getOriginThrowable(Throwable throwable) {
+      return Optional.ofNullable(NestedExceptionUtils.getRootCause(throwable))
+         .orElse(throwable);
+   }
 }

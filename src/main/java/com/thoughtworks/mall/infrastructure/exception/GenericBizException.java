@@ -4,15 +4,15 @@ import org.springframework.http.HttpStatus;
 
 public class GenericBizException extends BizException {
 
-    public GenericBizException(String message) {
-        super(message);
-    }
+   public GenericBizException(String message) {
+      super(message);
+   }
 
-    public GenericBizException(Throwable throwable) {
-        super(throwable);
-    }
+   public GenericBizException(Throwable throwable) {
+      super(throwable);
+   }
 
-    public GenericBizException(HttpStatus status, String message) {
-        super(status, message);
-    }
+   public GenericBizException(HttpStatus status, String message) {
+      super(status, message);
+   }
 }

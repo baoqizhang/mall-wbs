@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Order(Ordered.LOWEST_PRECEDENCE - 100)
 public class BizExceptionConverter extends AbstractExceptionConverter<BizException> {
 
-    @Override
-    public boolean supports(Class<?> throwableType) {
-        return BizException.class.isAssignableFrom(throwableType);
-    }
+   @Override
+   public boolean supports(Class<?> throwableType) {
+      return BizException.class.isAssignableFrom(throwableType);
+   }
 
-    @Override
-    protected HttpStatus getHttpStatus(BizException ex, MergedAnnotation<ResponseStatus> metadata) {
-        return ex.getHttpStatus();
-    }
+   @Override
+   protected HttpStatus getHttpStatus(BizException ex, MergedAnnotation<ResponseStatus> metadata) {
+      return ex.getHttpStatus();
+   }
 
-    @Override
-    protected String getMessage(BizException ex, MergedAnnotation<ResponseStatus> metadata) {
-        return ex.getMessage();
-    }
+   @Override
+   protected String getMessage(BizException ex, MergedAnnotation<ResponseStatus> metadata) {
+      return ex.getMessage();
+   }
 }

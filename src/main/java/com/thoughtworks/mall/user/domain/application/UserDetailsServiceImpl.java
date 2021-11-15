@@ -1,4 +1,4 @@
-package com.thoughtworks.mall.infrastructure.security.service;
+package com.thoughtworks.mall.user.domain.application;
 
 import com.thoughtworks.mall.user.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
+
    private final UserRepository userRepository;
 
    @Override
    public UserDetails loadUserByUsername(String username) {
-         var user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("username not exit"));
-         return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList());
+      var user = userRepository.findByUsername(username)
+         .orElseThrow(() -> new UsernameNotFoundException("username not exit"));
+
+      return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList());
    }
 }

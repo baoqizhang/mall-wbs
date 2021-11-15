@@ -1,6 +1,7 @@
 package com.thoughtworks.mall.infrastructure.security.service;
 
-import com.thoughtworks.mall.user.domain.UserEntity;
+import com.thoughtworks.mall.user.domain.application.UserDetailsServiceImpl;
+import com.thoughtworks.mall.user.domain.entity.UserEntity;
 import com.thoughtworks.mall.user.infrastructure.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.AuthorityUtils;

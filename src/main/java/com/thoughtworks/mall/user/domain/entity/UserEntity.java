@@ -1,4 +1,4 @@
-package com.thoughtworks.mall.user.domain;
+package com.thoughtworks.mall.user.domain.entity;
 
 import com.thoughtworks.mall.infrastructure.entity.AbstractEntity;
 import lombok.AllArgsConstructor;

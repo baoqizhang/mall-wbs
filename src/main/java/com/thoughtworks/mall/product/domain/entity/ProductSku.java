@@ -3,6 +3,8 @@ package com.thoughtworks.mall.product.domain.entity;
 import com.thoughtworks.mall.infrastructure.entity.AbstractEntity;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -14,7 +16,9 @@ import javax.persistence.*;
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductSkuEntity extends AbstractEntity {
+@Getter
+@Builder
+public class ProductSku extends AbstractEntity {
    private Long productId;
 
    private Integer price;

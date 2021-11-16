@@ -1,22 +1,27 @@
 package com.thoughtworks.mall.user.domain.entity;
 
 import com.thoughtworks.mall.infrastructure.entity.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-@AllArgsConstructor
+@Table(name = "user_address")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
-public class UserEntity extends AbstractEntity {
+public class UserAddress extends AbstractEntity {
+
+   private Long userId;
+
    private String name;
 
-   private String username;
+   private String phone;
 
-   private String password;
+   private Boolean prime;
+
+   private String address;
+
 }

@@ -1,4 +1,4 @@
-CREATE TABLE product_sku
+CREATE TABLE `product_sku`
 (
    `id`         bigint(20) NOT NULL auto_increment comment 'id',
    `product_id` bigint(20) NOT NULL comment 'product id',
@@ -9,7 +9,7 @@ CREATE TABLE product_sku
    `saleable`   boolean      NOT NULL comment '是否上架',
    `created_at` datetime     NOT NULL comment '创建时间',
    `updated_at` datetime     NOT NULL comment '更新时间',
-   PRIMARY KEY (id)
+   PRIMARY KEY (`id`)
 );
 
-ALTER TABLE product_sku comment 'product sku表';
+ALTER TABLE `product_sku` comment 'product sku表';

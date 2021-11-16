@@ -3,10 +3,7 @@ package com.thoughtworks.mall.product.domain.entity;
 import com.thoughtworks.mall.infrastructure.entity.AbstractEntity;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Getter
-@ToString
 public class Product extends AbstractEntity {
    private String title;
 
@@ -23,7 +19,7 @@ public class Product extends AbstractEntity {
 
    private Boolean saleable;
 
-   @OneToMany(fetch = FetchType.LAZY)
+   @OrderBy("createdAt DESC")
+   @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
    private List<ProductSku> productSkuList;
-
 }

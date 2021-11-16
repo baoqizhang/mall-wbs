@@ -13,7 +13,6 @@ public interface MockProduct {
       .saleable(true)
       .title("title")
       .productSkuList(List.of(ProductSku.builder()
-         .productId(1L)
          .images("")
          .param("")
          .price(100)

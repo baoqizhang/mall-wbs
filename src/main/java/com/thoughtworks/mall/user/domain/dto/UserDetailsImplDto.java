@@ -10,8 +10,14 @@ import java.util.Collection;
 public class UserDetailsImplDto extends User {
    private final Long id;
 
+
    public UserDetailsImplDto(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
       super(username, password, authorities);
+      this.id = id;
+   }
+
+   public UserDetailsImplDto(Long id, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+      super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
       this.id = id;
    }
 }

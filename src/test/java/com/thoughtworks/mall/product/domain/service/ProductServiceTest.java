@@ -3,8 +3,6 @@ package com.thoughtworks.mall.product.domain.service;
 import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.product.common.MockProduct;
 import com.thoughtworks.mall.product.infrastructure.repository.ProductRepository;
-import com.thoughtworks.mall.user.domain.application.UserDetailsServiceImpl;
-import com.thoughtworks.mall.user.infrastructure.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -14,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ProductServiceTest implements MockProduct {
+class ProductServiceTest implements MockProduct {
    ProductRepository productRepository = mock(ProductRepository.class);
    ProductService productService = new ProductService(productRepository);
 

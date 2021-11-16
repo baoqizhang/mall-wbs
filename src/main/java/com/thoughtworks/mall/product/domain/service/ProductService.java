@@ -2,7 +2,6 @@ package com.thoughtworks.mall.product.domain.service;
 
 import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.product.domain.entity.Product;
-import com.thoughtworks.mall.product.domain.entity.ProductSku;
 import com.thoughtworks.mall.product.infrastructure.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

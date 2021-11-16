@@ -5,19 +5,16 @@ import com.thoughtworks.mall.infrastructure.exception.BizException;
 import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.product.api.assembler.ProductAssembler;
 import com.thoughtworks.mall.product.common.MockProduct;
-import com.thoughtworks.mall.product.common.MockProductSku;
 import com.thoughtworks.mall.product.domain.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.security.GeneralSecurityException;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(value = {ProductController.class, ProductAssembler.class})
 @ComponentScan(basePackageClasses = BizException.class)
-@AutoConfigureMockMvc(addFilters = false)
 class ProductControllerTest implements MockProduct {
    @Autowired
    MockMvc mockMvc;
@@ -35,6 +31,7 @@ class ProductControllerTest implements MockProduct {
    ProductService productService;
 
    @Test
+   @WithMockUser(username = "admin")
    void should_return_200_when_get_product_detail_with_right_request_info() throws Exception {
       when(productService.getProductById(1L)).thenReturn(PRODUCT);
 
@@ -46,6 +43,7 @@ class ProductControllerTest implements MockProduct {
    }
 
    @Test
+   @WithMockUser(username = "admin")
    void should_throw_exception_when_product_not_exist() throws Exception {
       when(productService.getProductById(2L)).thenThrow(new GenericBizException(HttpStatus.BAD_REQUEST, "product not exist"));
 

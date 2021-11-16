@@ -1,11 +1,9 @@
 package com.thoughtworks.mall.user.domain.application;
 
+import com.thoughtworks.mall.user.domain.dto.UserDetailsImplDto;
 import com.thoughtworks.mall.user.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,8 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
    public UserDetails loadUserByUsername(String username) {
       var user = userRepository.findByUsername(username)
          .orElseThrow(() -> new UsernameNotFoundException("username not exit"));
-      SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, user.getPassword()));
 
-      return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList());
+      return new UserDetailsImplDto(user.getId(), user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList());
    }
 }

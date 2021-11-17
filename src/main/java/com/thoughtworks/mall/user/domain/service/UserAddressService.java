@@ -3,14 +3,14 @@ package com.thoughtworks.mall.user.domain.service;
 import com.thoughtworks.mall.user.domain.dto.UserDetailsImplDto;
 import com.thoughtworks.mall.user.domain.entity.UserAddress;
 import com.thoughtworks.mall.user.infrastructure.repository.UserAddressRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserAddressService {
 
    private final UserAddressRepository userAddressRepository;

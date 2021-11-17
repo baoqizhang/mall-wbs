@@ -7,7 +7,7 @@ public interface MockUserAddress {
       .address("四川省成都市")
       .userId(1L)
       .name("张三")
-      .phone("12345678901")
+      .phone("13345678901")
       .prime(true)
       .build();
 }

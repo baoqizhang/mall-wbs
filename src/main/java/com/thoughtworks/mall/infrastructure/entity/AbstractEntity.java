@@ -1,7 +1,6 @@
 package com.thoughtworks.mall.infrastructure.entity;
 
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,6 @@ public abstract class AbstractEntity {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @CreatedDate
    private Instant createdAt;
 
    private Instant updatedAt;
@@ -26,7 +24,7 @@ public abstract class AbstractEntity {
       this.id = id;
    }
 
-   public void updateBasicInfo(Instant createdAt, String createdBy, Instant updatedAt, String updatedBy) {
+   public void updateBasicInfo(Instant createdAt, Instant updatedAt) {
       this.createdAt = createdAt;
       this.updatedAt = updatedAt;
    }

@@ -18,4 +18,8 @@ public class UserAddressService {
       var currentUserId = new SercurityCommonProvider().getCurrentUserId();
       return userAddressRepository.findAllByUserId(currentUserId);
    }
+
+   public void createAddress(UserAddress userAddress) {
+      userAddressRepository.save(userAddress);
+   }
 }

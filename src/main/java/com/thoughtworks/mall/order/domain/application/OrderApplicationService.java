@@ -32,7 +32,7 @@ public class OrderApplicationService {
          .map(OrderDetailRequest::getSkuId)
          .collect(Collectors.toList());
       var skuIdsExist = productSkuService.existsByIds(skuIds);
-      if (!skuIdsExist) {
+      if (Boolean.FALSE.equals(skuIdsExist)) {
          throw new GenericBizException("product sku not exist");
       }
 

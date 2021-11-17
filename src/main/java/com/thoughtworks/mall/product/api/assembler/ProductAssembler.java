@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProductAssembler {
-   public ProductResponse toResouce(Product product) {
+   public ProductResponse toResource(Product product) {
       var productSkuResponseList = product.getProductSkuList()
-         .stream().map(ProductSkuAssembler::toReResouce)
+         .stream().map(ProductSkuAssembler::toResource)
          .collect(Collectors.toList());
 
       return new ProductResponse()

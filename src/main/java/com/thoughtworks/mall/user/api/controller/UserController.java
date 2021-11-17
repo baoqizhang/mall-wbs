@@ -24,14 +24,14 @@ public class UserController {
    @GetMapping("/address")
    @ApiOperation("获取当前用户地址")
    public List<UserAddressResponse> getCurrentUserAddress() {
-      return userAddressAssembler.toResouce(userAddressService.getCurrentUserAddress());
+      return userAddressAssembler.toResource(userAddressService.getCurrentUserAddress());
    }
 
    @PostMapping("/address")
    @ApiOperation("创建当前用户地址")
    @ResponseStatus(HttpStatus.CREATED)
    public void createAddress(@RequestBody @Valid UserAddressRequest userAddressRequest) {
-      var userAddress = userAddressAssembler.toResouce(userAddressRequest);
+      var userAddress = userAddressAssembler.toResource(userAddressRequest);
       userAddressService.createAddress(userAddress);
    }
 }

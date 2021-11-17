@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserAddressAssembler {
-   public List<UserAddressResponse> toResouce(List<UserAddress> userAddressList) {
+   public List<UserAddressResponse> toResource(List<UserAddress> userAddressList) {
       return userAddressList.stream().map(address -> new UserAddressResponse()
             .setId(address.getId())
             .setName(address.getName())
@@ -21,7 +21,7 @@ public class UserAddressAssembler {
          .collect(Collectors.toList());
    }
 
-   public UserAddress toResouce(UserAddressRequest userAddressRequest) {
+   public UserAddress toResource(UserAddressRequest userAddressRequest) {
       var userAddress = UserAddress.builder()
          .userId(new SercurityCommonProvider().getCurrentUserId())
          .address(userAddressRequest.getAddress())

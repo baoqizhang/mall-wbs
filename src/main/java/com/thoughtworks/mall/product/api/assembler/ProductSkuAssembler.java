@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductSkuAssembler {
-   public static ProductSkuResponse toReResouce(ProductSku productSku) {
+   public static ProductSkuResponse toResource(ProductSku productSku) {
       return new ProductSkuResponse()
          .setId(productSku.getId())
          .setImages(productSku.getImages())

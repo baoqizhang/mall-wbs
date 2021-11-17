@@ -24,7 +24,7 @@ public class ProductController {
    @GetMapping("/{id}")
    @ApiOperation(value = "get product by id")
    public ProductResponse getProduct(@PathVariable("id") Long id) {
-      return productAssembler.toResouce(productService.getProductById(id));
+      return productAssembler.toResource(productService.getProductById(id));
    }
 
 }

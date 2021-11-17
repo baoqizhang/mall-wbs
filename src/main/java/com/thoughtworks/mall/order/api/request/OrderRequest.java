@@ -3,6 +3,7 @@ package com.thoughtworks.mall.order.api.request;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -21,5 +22,6 @@ public class OrderRequest {
    @NotNull(message = "address not null")
    private Long addressId;
 
+   @NotEmpty(message = "order detail not empty")
    private List<OrderDetailRequest> orderDetailRequests;
 }

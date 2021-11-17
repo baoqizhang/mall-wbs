@@ -87,7 +87,6 @@ class UserControllerTest implements MockUserAddress {
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content(new ObjectMapper().writeValueAsString(build)))
          .andExpect(status().is4xxClientError())
-         .andExpect(jsonPath("$.reason.messages").value("phone length should is 11."))
          .andReturn();
    }
 

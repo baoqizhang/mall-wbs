@@ -1,5 +1,6 @@
 package com.thoughtworks.mall.user.domain.service;
 
+import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.infrastructure.security.common.SercurityCommonProvider;
 import com.thoughtworks.mall.user.domain.entity.UserAddress;
 import com.thoughtworks.mall.user.infrastructure.repository.UserAddressRepository;
@@ -21,5 +22,12 @@ public class UserAddressService {
 
    public void createAddress(UserAddress userAddress) {
       userAddressRepository.save(userAddress);
+   }
+
+   public UserAddress findById(Long addressId) {
+      var currentUserId = new SercurityCommonProvider().getCurrentUserId();
+
+      return userAddressRepository.findByUserIdAndId(currentUserId, addressId)
+         .orElseThrow(() -> new GenericBizException("current user this address."));
    }
 }

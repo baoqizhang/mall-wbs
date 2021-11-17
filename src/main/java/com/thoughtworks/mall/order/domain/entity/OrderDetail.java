@@ -1,9 +1,6 @@
 package com.thoughtworks.mall.order.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +11,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 @IdClass(OrderDetail.OrderDetailId.class)
 public class OrderDetail {
    @Id

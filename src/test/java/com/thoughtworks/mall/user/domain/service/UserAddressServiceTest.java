@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(value = UserAddressRepository.class)
+@WebMvcTest(value ={ UserAddressRepository.class})
 class UserAddressServiceTest implements MockUserAddress {
 
    UserAddressRepository userAddressRepository = mock(UserAddressRepository.class);
@@ -22,6 +22,7 @@ class UserAddressServiceTest implements MockUserAddress {
    @WithMockUserImpl
    void should_get_address_when_user_login() {
       when(userAddressRepository.findAllByUserId(1L)).thenReturn(List.of(USER_ADDRESS));
+
       assertEquals(List.of(USER_ADDRESS), userAddressService.getCurrentUserAddress());
    }
 }

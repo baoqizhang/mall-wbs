@@ -4,10 +4,9 @@ import com.thoughtworks.mall.infrastructure.constants.Constant;
 import com.thoughtworks.mall.user.api.assembler.UserAddressAssembler;
 import com.thoughtworks.mall.user.api.response.UserAddressResponse;
 import com.thoughtworks.mall.user.domain.service.UserAddressService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +19,7 @@ public class UserController {
    private final UserAddressAssembler userAddressAssembler;
 
    @GetMapping("/address")
+   @ApiOperation("获取当前用户地址")
    public List<UserAddressResponse> getCurrentUserAddress() {
       return userAddressAssembler.toResouce(userAddressService.getCurrentUserAddress());
    }

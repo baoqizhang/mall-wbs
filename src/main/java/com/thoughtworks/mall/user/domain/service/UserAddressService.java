@@ -1,10 +1,9 @@
 package com.thoughtworks.mall.user.domain.service;
 
-import com.thoughtworks.mall.user.domain.dto.UserDetailsImplDto;
+import com.thoughtworks.mall.infrastructure.security.common.SercurityCommonProvider;
 import com.thoughtworks.mall.user.domain.entity.UserAddress;
 import com.thoughtworks.mall.user.infrastructure.repository.UserAddressRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +15,7 @@ public class UserAddressService {
    private final UserAddressRepository userAddressRepository;
 
    public List<UserAddress> getCurrentUserAddress() {
-      var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      Long userId = null;
-      if (principal instanceof UserDetailsImplDto) {
-         userId = ((UserDetailsImplDto) principal).getId();
-      }
-      return userAddressRepository.findAllByUserId(userId);
+      var currentUserId = new SercurityCommonProvider().getCurrentUserId();
+      return userAddressRepository.findAllByUserId(currentUserId);
    }
 }

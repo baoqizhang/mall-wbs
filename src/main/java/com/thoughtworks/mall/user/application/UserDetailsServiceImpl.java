@@ -1,4 +1,4 @@
-package com.thoughtworks.mall.user.domain.application;
+package com.thoughtworks.mall.user.application;
 
 import com.thoughtworks.mall.user.domain.dto.UserDetailsImplDto;
 import com.thoughtworks.mall.user.infrastructure.repository.UserRepository;

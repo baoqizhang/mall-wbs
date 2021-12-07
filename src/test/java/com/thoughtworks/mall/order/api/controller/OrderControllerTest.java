@@ -5,7 +5,7 @@ import com.thoughtworks.mall.infrastructure.constants.Constant;
 import com.thoughtworks.mall.infrastructure.security.common.WithMockUserImpl;
 import com.thoughtworks.mall.order.api.request.OrderDetailRequest;
 import com.thoughtworks.mall.order.api.request.OrderRequest;
-import com.thoughtworks.mall.order.domain.application.OrderApplicationService;
+import com.thoughtworks.mall.order.application.OrderApplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

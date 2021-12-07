@@ -2,7 +2,7 @@ package com.thoughtworks.mall.order.api.controller;
 
 import com.thoughtworks.mall.infrastructure.constants.Constant;
 import com.thoughtworks.mall.order.api.request.OrderRequest;
-import com.thoughtworks.mall.order.domain.application.OrderApplicationService;
+import com.thoughtworks.mall.order.application.OrderApplicationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.thoughtworks.mall.order.domain.application;
+package com.thoughtworks.mall.order.application;
 
 import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.order.api.assembler.OrderAssembler;

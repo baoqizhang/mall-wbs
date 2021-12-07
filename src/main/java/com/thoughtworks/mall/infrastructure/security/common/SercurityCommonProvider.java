@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SercurityCommonProvider {
 
-   public Long getCurrentUserId() {
+   public static Long getCurrentUserId() {
       var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       if (principal instanceof UserDetailsImplDto) {
          return ((UserDetailsImplDto) principal).getId();

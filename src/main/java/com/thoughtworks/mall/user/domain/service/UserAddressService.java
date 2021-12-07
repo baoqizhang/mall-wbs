@@ -16,16 +16,17 @@ public class UserAddressService {
    private final UserAddressRepository userAddressRepository;
 
    public List<UserAddress> getCurrentUserAddress() {
-      var currentUserId = new SercurityCommonProvider().getCurrentUserId();
+      var currentUserId = SercurityCommonProvider.getCurrentUserId();
       return userAddressRepository.findAllByUserId(currentUserId);
    }
 
-   public void createAddress(UserAddress userAddress) {
+   public void createCurrentUserAddress(UserAddress userAddress) {
+      userAddress.updateUserId(SercurityCommonProvider.getCurrentUserId());
       userAddressRepository.save(userAddress);
    }
 
    public UserAddress findById(Long addressId) {
-      var currentUserId = new SercurityCommonProvider().getCurrentUserId();
+      var currentUserId = SercurityCommonProvider.getCurrentUserId();
 
       return userAddressRepository.findByUserIdAndId(currentUserId, addressId)
          .orElseThrow(() -> new GenericBizException("current user this address."));

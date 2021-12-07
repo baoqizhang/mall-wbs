@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.mall.infrastructure.constants.Constant;
 import com.thoughtworks.mall.infrastructure.exception.BizException;
 import com.thoughtworks.mall.infrastructure.security.common.WithMockUserImpl;
-import com.thoughtworks.mall.user.api.assembler.UserAddressAssembler;
 import com.thoughtworks.mall.user.api.request.UserAddressRequest;
 import com.thoughtworks.mall.user.common.MockUserAddress;
 import com.thoughtworks.mall.user.domain.service.UserAddressService;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ComponentScan(basePackageClasses = BizException.class)
-@WebMvcTest(value = {UserController.class, UserAddressAssembler.class})
+@WebMvcTest(value = {UserController.class})
 class UserControllerTest implements MockUserAddress {
 
    @Autowired

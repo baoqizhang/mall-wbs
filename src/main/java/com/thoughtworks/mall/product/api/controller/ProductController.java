@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
    private final ProductService productService;
-   private final ProductAssembler productAssembler;
 
    @GetMapping("/{id}")
    @ApiOperation(value = "get product by id")
    public ProductResponse getProduct(@PathVariable("id") Long id) {
-      return productAssembler.toResource(productService.getProductById(id));
+      return ProductAssembler.toResource(productService.getProductById(id));
    }
 
 }

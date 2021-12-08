@@ -13,7 +13,7 @@ public class SecurityCommonProvider {
       if (principal instanceof UserDetailsImplDto) {
          return ((UserDetailsImplDto) principal);
       }
-      throw new GenericBizException("not exist user id");
+      throw new GenericBizException("not exist user details impl dto");
    }
 
    public Long getCurrentUserId() {

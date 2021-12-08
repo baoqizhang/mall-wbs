@@ -26,7 +26,7 @@ class UserAddressServiceTest implements MockUserAddress {
    void should_get_address_when_user_login() {
       when(userAddressRepository.findAllByUserId(1L)).thenReturn(List.of(USER_ADDRESS));
 
-      assertEquals(List.of(USER_ADDRESS), userAddressService.getCurrentUserAddress());
+      assertEquals(List.of(USER_ADDRESS), userAddressService.findAllByUserId(1L));
    }
 
    @Test
@@ -34,7 +34,7 @@ class UserAddressServiceTest implements MockUserAddress {
    void should_get_user_address_when_provide_address_id() {
       when(userAddressRepository.findByUserIdAndId(1L, 1L)).thenReturn(Optional.of(USER_ADDRESS));
 
-      assertEquals(USER_ADDRESS, userAddressService.findCurrentUserAddressById(1L));
+      assertEquals(USER_ADDRESS, userAddressService.findByUserIdAndId(1L, 1L));
    }
 
    @Test
@@ -42,6 +42,6 @@ class UserAddressServiceTest implements MockUserAddress {
    void should_throw_exception_when_provide_not_exist_address_id() {
       when(userAddressRepository.findByUserIdAndId(1L, 1L)).thenReturn(Optional.empty());
 
-      assertThrows(GenericBizException.class, () -> userAddressService.findCurrentUserAddressById(1L), "current user this address.");
+      assertThrows(GenericBizException.class, () -> userAddressService.findByUserIdAndId(1L, 1L), "current user this address.");
    }
 }

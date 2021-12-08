@@ -5,6 +5,7 @@ import com.thoughtworks.mall.infrastructure.constants.Constant;
 import com.thoughtworks.mall.infrastructure.exception.BizException;
 import com.thoughtworks.mall.infrastructure.security.common.WithMockUserImpl;
 import com.thoughtworks.mall.user.api.request.UserAddressRequest;
+import com.thoughtworks.mall.user.application.UserAddressApplicationService;
 import com.thoughtworks.mall.user.common.MockUserAddress;
 import com.thoughtworks.mall.user.domain.service.UserAddressService;
 import org.junit.jupiter.api.Test;
@@ -31,12 +32,12 @@ class UserControllerTest implements MockUserAddress {
    MockMvc mockMvc;
 
    @MockBean
-   UserAddressService userAddressService;
+   UserAddressApplicationService userAddressApplicationService;
 
    @Test
    @WithMockUserImpl(username = "admin")
    void should_return_200_when_get_user_detail_with_right_request_info() throws Exception {
-      when(userAddressService.getCurrentUserAddress()).thenReturn(List.of(USER_ADDRESS));
+      when(userAddressApplicationService.getCurrentUserAddress()).thenReturn(List.of(USER_ADDRESS));
 
       mockMvc.perform(get(Constant.ROOT + "/user/address")
             .accept(MediaType.APPLICATION_JSON_VALUE)

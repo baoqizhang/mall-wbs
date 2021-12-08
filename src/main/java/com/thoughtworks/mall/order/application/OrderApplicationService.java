@@ -1,6 +1,7 @@
 package com.thoughtworks.mall.order.application;
 
 import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
+import com.thoughtworks.mall.infrastructure.security.common.SecurityCommonProvider;
 import com.thoughtworks.mall.order.domain.entity.Order;
 import com.thoughtworks.mall.order.domain.entity.OrderDetail;
 import com.thoughtworks.mall.order.domain.service.OrderDetailService;
@@ -22,6 +23,7 @@ public class OrderApplicationService {
    private final OrderDetailService orderDetailService;
    private final OrderService orderService;
    private final ProductSkuService productSkuService;
+   private final SecurityCommonProvider securityCommonProvider;
 
    @Transactional(rollbackFor = Exception.class)
    public void create(Order order, List<OrderDetail> orderDetails, Long addressId) {
@@ -33,7 +35,7 @@ public class OrderApplicationService {
          throw new GenericBizException("product sku not exist");
       }
 
-      var userAddress = userAddressService.findCurrentUserAddressById(addressId);
+      var userAddress = userAddressService.findByUserIdAndId(securityCommonProvider.getCurrentUserId(),addressId);
       order.updateUserAddress(userAddress);
       orderService.create(order);
 

@@ -1,6 +1,5 @@
 package com.thoughtworks.mall.product.domain.service;
 
-import com.thoughtworks.mall.product.domain.entity.ProductSku;
 import com.thoughtworks.mall.product.infrastructure.repository.ProductSkuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

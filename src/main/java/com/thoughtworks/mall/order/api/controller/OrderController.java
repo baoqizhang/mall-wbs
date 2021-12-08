@@ -1,6 +1,8 @@
 package com.thoughtworks.mall.order.api.controller;
 
 import com.thoughtworks.mall.infrastructure.constants.Constant;
+import com.thoughtworks.mall.order.api.assembler.OrderAssembler;
+import com.thoughtworks.mall.order.api.assembler.OrderDetailAssembler;
 import com.thoughtworks.mall.order.api.request.OrderRequest;
 import com.thoughtworks.mall.order.application.OrderApplicationService;
 import io.swagger.annotations.Api;
@@ -23,6 +25,7 @@ public class OrderController {
    @ResponseStatus(HttpStatus.CREATED)
    @ApiOperation("create order")
    public void create(@RequestBody @Valid OrderRequest orderRequest) {
-      orderApplicationService.create(orderRequest);
+      orderApplicationService.create(OrderAssembler.toResource(orderRequest),
+         OrderDetailAssembler.toResource(orderRequest.getOrderDetailRequests()), orderRequest.getAddressId());
    }
 }

@@ -2,7 +2,10 @@ package com.thoughtworks.mall.order.domain.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -37,5 +40,9 @@ public class OrderDetail {
       private Long orderId;
 
       private Long skuId;
+   }
+
+   public void updateOrderId(Long orderId) {
+      this.orderId = orderId;
    }
 }

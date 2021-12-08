@@ -4,7 +4,7 @@ import com.thoughtworks.mall.infrastructure.exception.GenericBizException;
 import com.thoughtworks.mall.user.domain.dto.UserDetailsImplDto;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-public class SercurityCommonProvider {
+public class SecurityCommonProvider {
 
    public static Long getCurrentUserId() {
       var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

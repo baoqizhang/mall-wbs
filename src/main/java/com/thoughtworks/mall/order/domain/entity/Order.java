@@ -35,4 +35,8 @@ public class Order extends AbstractEntity {
    @OneToMany(mappedBy = "orderId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
    private List<OrderDetail> orderDetails;
 
+   public void updateUserAddress(UserAddress userAddress) {
+      this.userAddress = userAddress;
+   }
+
 }
